@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temple Album</title>
+  <meta name="description" content="A responsive temple picture album showcasing temples around the world using HTML, CSS, and JavaScript.">
+  <meta name="author" content="Walusoma Martin">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles/temples.css">
+  <link rel="stylesheet" href="styles/temples-large.css">
+
+  <!-- JavaScript -->
+  <script src="scripts/filtered-temples.js" defer></script> <!-- Make sure JS name matches -->
+</head>
+<body>
+<header>
+  <div class="header-bar">
+    <span class="site-title">Temple Album</span>
+    <button id="menuBtn" aria-label="Toggle Menu" aria-expanded="false">☰</button>
+  </div>
+  <nav id="navMenu">
+    <a href="#" data-filter="all">Home</a>
+    <a href="#" data-filter="old">Old</a>
+    <a href="#" data-filter="new">New</a>
+    <a href="#" data-filter="large">Large</a>
+    <a href="#" data-filter="small">Small</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Temple Album</h1>
+  <section class="gallery" id="templeGallery">
+    <!-- Temple cards will be dynamically inserted here -->
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Walusoma Martin | Uganda</p>
+  <p>Last Modified: <span id="modified"></span></p>
+</footer>
+</body>
+</html>
