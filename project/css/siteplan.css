@@ -1,13 +1,14 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
   background-color: #f4f4f4;
-  color: #333;
+  color: #333333;
   margin: 20px;
   line-height: 1.6;
 }
 
-h1, h2 {
-  font-family: 'Roboto', sans-serif;
+h1,
+h2 {
+  font-family: "Roboto", Arial, sans-serif;
   color: #0B6E4F;
 }
 
@@ -22,7 +23,7 @@ section {
   display: inline-block;
   width: 120px;
   height: 30px;
-  border: 1px solid #000;
+  border: 1px solid #000000;
   margin-right: 10px;
   vertical-align: middle;
 }
@@ -35,8 +36,18 @@ section {
   background-color: #F4A261;
 }
 
+a {
+  color: #F4A261;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .wireframe {
-  border: 1px dashed #333;
+  border: 1px dashed #333333;
   padding: 10px;
   margin-top: 10px;
   background-color: #fafafa;
