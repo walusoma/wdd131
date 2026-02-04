@@ -6,7 +6,7 @@ const products = [
   { id: "jj-1969", name: "Warp Equalizer" }
 ];
 
-// Populate product select
+// Populate product select dynamically
 const productSelect = document.querySelector("#product");
 
 if (productSelect) {
@@ -18,7 +18,7 @@ if (productSelect) {
   });
 }
 
-// Review counter
+// Review counter on review.html
 const counterDisplay = document.querySelector("#counter");
 
 if (counterDisplay) {
