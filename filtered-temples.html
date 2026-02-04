@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Temple Album</title>
-  <meta name="description" content="A responsive temple picture album showcasing temples around the world using HTML, CSS, and JavaScript.">
+  <meta name="description" content="A responsive temple picture album showcasing temples using filtering and dynamic JavaScript.">
   <meta name="author" content="Walusoma Martin">
 
   <!-- Google Font -->
@@ -15,16 +16,16 @@
   <!-- CSS -->
   <link rel="stylesheet" href="styles/temples.css">
   <link rel="stylesheet" href="styles/temples-large.css">
-
-  <!-- JavaScript -->
-  <script src="scripts/filtered-temples.js" defer></script> <!-- Make sure JS name matches -->
+  <script src="scripts/filtered-temples.js" defer></script>
 </head>
+
 <body>
 <header>
   <div class="header-bar">
     <span class="site-title">Temple Album</span>
     <button id="menuBtn" aria-label="Toggle Menu" aria-expanded="false">☰</button>
   </div>
+
   <nav id="navMenu">
     <a href="#" data-filter="all">Home</a>
     <a href="#" data-filter="old">Old</a>
@@ -36,9 +37,16 @@
 
 <main>
   <h1>Temple Album</h1>
-  <section class="gallery" id="templeGallery">
-    <!-- Temple cards will be dynamically inserted here -->
+
+  <section class="filters">
+    <button data-filter="all">Home</button>
+    <button data-filter="old">Old</button>
+    <button data-filter="new">New</button>
+    <button data-filter="large">Large</button>
+    <button data-filter="small">Small</button>
   </section>
+
+  <section class="gallery" id="templeGallery"></section>
 </main>
 
 <footer>

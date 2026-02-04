@@ -13,70 +13,73 @@ menuBtn.addEventListener("click", () => {
   menuBtn.setAttribute("aria-expanded", expanded);
 });
 
-// Temple array
+// Temple data
 const temples = [
-  { templeName: "Aba Nigeria", location: "Aba, Nigeria", dedicated: "2005-08-07", area: 11500, imageUrl: "images/temple.jpeg" },
-  { templeName: "Manti Utah", location: "Manti, Utah, United States", dedicated: "1888-05-21", area: 74792, imageUrl: "images/temple.jpeg" },
-  { templeName: "Payson Utah", location: "Payson, Utah, United States", dedicated: "2015-06-07", area: 96630, imageUrl: "images/temple.jpeg" },
-  { templeName: "Yigo Guam", location: "Yigo, Guam", dedicated: "2020-05-02", area: 6861, imageUrl: "images/temple.jpeg" },
-  { templeName: "Washington D.C.", location: "Kensington, Maryland, United States", dedicated: "1974-11-19", area: 156558, imageUrl: "images/temple.jpeg" },
-  { templeName: "Lima Perú", location: "Lima, Perú", dedicated: "1986-01-10", area: 9600, imageUrl: "images/temple.jpeg" },
-  { templeName: "Mexico City Mexico", location: "Mexico City, Mexico", dedicated: "1983-12-02", area: 116642, imageUrl: "images/temple.jpeg" },
-  { templeName: "Accra Ghana", location: "Accra, Ghana", dedicated: "2004-01-11", area: 20000, imageUrl: "images/accra.jpg" },
-  { templeName: "Rome Italy", location: "Rome, Italy", dedicated: "2019-03-10", area: 12000, imageUrl: "images/rome.jpg" },
-  { templeName: "Tokyo Japan", location: "Tokyo, Japan", dedicated: "1980-04-27", area: 85000, imageUrl: "images/temple.jpeg" }
+  { name: "Aba Nigeria", location: "Aba, Nigeria", dedicated: "2005-08-07", area: 11500, image: "images/temple.jpeg" },
+  { name: "Manti Utah", location: "Manti, Utah, USA", dedicated: "1888-05-21", area: 74792, image: "images/temple.jpeg" },
+  { name: "Payson Utah", location: "Payson, Utah, USA", dedicated: "2015-06-07", area: 96630, image: "images/temple.jpeg" },
+  { name: "Yigo Guam", location: "Yigo, Guam", dedicated: "2020-05-02", area: 6861, image: "images/temple.jpeg" },
+  { name: "Washington D.C.", location: "Maryland, USA", dedicated: "1974-11-19", area: 156558, image: "images/temple.jpeg" },
+  { name: "Lima Perú", location: "Lima, Perú", dedicated: "1986-01-10", area: 9600, image: "images/temple.jpeg" },
+  { name: "Mexico City", location: "Mexico City, Mexico", dedicated: "1983-12-02", area: 116642, image: "images/temple.jpeg" },
+  { name: "Accra Ghana", location: "Accra, Ghana", dedicated: "2004-01-11", area: 20000, image: "images/accra.jpg" },
+  { name: "Rome Italy", location: "Rome, Italy", dedicated: "2019-03-10", area: 12000, image: "images/rome.jpg" },
+  { name: "Tokyo Japan", location: "Tokyo, Japan", dedicated: "1980-04-27", area: 85000, image: "images/temple.jpeg" }
 ];
 
-// Function to display temple cards
-const gallery = document.getElementById("templeGallery");
+const gallery = document.querySelector("#templeGallery");
 
-function displayTemples(filteredTemples) {
-  gallery.innerHTML = ""; 
+function displayTemples(list) {
+  gallery.innerHTML = "";
 
-  filteredTemples.forEach(temple => {
+  list.forEach(t => {
     const card = document.createElement("figure");
 
     const img = document.createElement("img");
-    img.src = temple.imageUrl;
-    img.alt = temple.templeName;
-    img.loading = "lazy"; 
-    card.appendChild(img);
+    img.src = t.image;
+    img.alt = t.name;
+    img.loading = "lazy";
 
     const caption = document.createElement("figcaption");
     caption.innerHTML = `
-      <strong>${temple.templeName}</strong><br>
-      Location: ${temple.location}<br>
-      Dedicated: ${temple.dedicated}<br>
-      Area: ${temple.area.toLocaleString()} sq ft
+      <strong>${t.name}</strong><br>
+      ${t.location}<br>
+      Dedicated: ${t.dedicated}<br>
+      Area: ${t.area.toLocaleString()} sq ft
     `;
-    card.appendChild(caption);
 
+    card.appendChild(img);
+    card.appendChild(caption);
     gallery.appendChild(card);
   });
 }
 
-// Initial display
+// Initial load
 displayTemples(temples);
 
-// Filter functionality
-navMenu.addEventListener("click", (e) => {
+// FILTER LOGIC
+function applyFilter(filter) {
+  let result = temples;
+
+  if (filter === "old") result = temples.filter(t => new Date(t.dedicated) < new Date("1900-01-01"));
+  if (filter === "new") result = temples.filter(t => new Date(t.dedicated) > new Date("2000-01-01"));
+  if (filter === "large") result = temples.filter(t => t.area > 90000);
+  if (filter === "small") result = temples.filter(t => t.area < 10000);
+
+  displayTemples(result);
+}
+
+// Button filters
+document.querySelector(".filters").addEventListener("click", e => {
+  if (e.target.tagName === "BUTTON") {
+    applyFilter(e.target.dataset.filter);
+  }
+});
+
+// Nav filters
+navMenu.addEventListener("click", e => {
   if (e.target.tagName === "A") {
     e.preventDefault();
-    const filter = e.target.dataset.filter;
-
-    let filtered;
-    if (filter === "old") {
-      filtered = temples.filter(t => new Date(t.dedicated) < new Date("1900-01-01"));
-    } else if (filter === "new") {
-      filtered = temples.filter(t => new Date(t.dedicated) > new Date("2000-01-01"));
-    } else if (filter === "large") {
-      filtered = temples.filter(t => t.area > 90000);
-    } else if (filter === "small") {
-      filtered = temples.filter(t => t.area < 10000);
-    } else {
-      filtered = temples; 
-    }
-
-    displayTemples(filtered);
+    applyFilter(e.target.dataset.filter);
   }
 });
