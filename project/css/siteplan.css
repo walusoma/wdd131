@@ -1,3 +1,4 @@
+/* General Body Styles */
 body {
   font-family: "Open Sans", Arial, sans-serif;
   background-color: #f4f4f4;
@@ -6,12 +7,14 @@ body {
   line-height: 1.6;
 }
 
-h1,
-h2 {
+/* Headings */
+h1, h2 {
   font-family: "Roboto", Arial, sans-serif;
   color: #0B6E4F;
+  margin-top: 0;
 }
 
+/* Section Boxes */
 section {
   background-color: #ffffff;
   padding: 15px;
@@ -19,6 +22,7 @@ section {
   border-radius: 6px;
 }
 
+/* Color Boxes for Schema */
 .color-box {
   display: inline-block;
   width: 120px;
@@ -36,6 +40,7 @@ section {
   background-color: #F4A261;
 }
 
+/* Links */
 a {
   color: #F4A261;
   font-weight: 600;
@@ -46,6 +51,7 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Wireframes */
 .wireframe {
   border: 1px dashed #333333;
   padding: 10px;
